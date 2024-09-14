@@ -8,7 +8,7 @@ export interface ISensorReading extends Document {
 
 const SensorReadingSchema: Schema = new Schema({
   equipmentId: { type: String, required: true },
-  timestampe: { type: Date, required: true },
+  timestamp: { type: Date, required: true },
   value: { type: Number, required: true },
 });
 
