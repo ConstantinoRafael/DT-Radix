@@ -2,12 +2,13 @@ import express from "express";
 import { config } from "dotenv";
 import { connectDb } from "./config/database";
 import SensorRoutes from "./routes/sensor-routes";
+import cors from "cors";
 
 config();
 const app = express();
 
 app.use(express.json());
-
+app.use(cors());
 connectDb();
 
 app.use("/api/sensors", SensorRoutes);
