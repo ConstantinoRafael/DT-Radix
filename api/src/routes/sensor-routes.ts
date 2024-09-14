@@ -13,4 +13,8 @@ router.post("/sensor-data", (req, res) =>
   sensorController.postSensorData(req, res)
 );
 
+router.get("/sensor-averages", (req, res) =>
+  sensorController.getSensorAverages(req, res)
+);
+
 export default router;

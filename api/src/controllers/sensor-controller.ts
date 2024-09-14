@@ -31,4 +31,27 @@ export class SensorController {
       return res.status(500).json({ error });
     }
   }
+
+  public async getSensorAverages(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    try {
+      const { period } = req.query;
+
+      if (!period) {
+        return res
+          .status(400)
+          .json({ error: '"period" parameter is required' });
+      }
+
+      const averages = await this.sensorService.getSensorAverages(
+        period as string
+      );
+
+      return res.status(200).json(averages);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
 }
