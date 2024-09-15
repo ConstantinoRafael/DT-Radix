@@ -1,6 +1,5 @@
 import SensorReading, {
   CreateSensorData,
-  ISensorReading,
   ResultCreateSensorData,
   SensorAverage,
 } from "../models/sensor-reading-model";
@@ -14,8 +13,8 @@ export class SensorRepository {
   }
 
   async saveMultipleSensorReadings(
-    sensorDataArray: ISensorReading[]
-  ): Promise<CreateSensorData[]> {
+    sensorDataArray: CreateSensorData[]
+  ): Promise<ResultCreateSensorData[]> {
     return await SensorReading.insertMany(sensorDataArray);
   }
 

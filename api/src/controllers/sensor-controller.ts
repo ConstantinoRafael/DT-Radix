@@ -35,6 +35,20 @@ export class SensorController {
     }
   }
 
+  public async uploadCSV(req: Request, res: Response): Promise<Response> {
+    try {
+      if (!req.file || !req.file.buffer) {
+        return res.status(400).json({ error: "CSV file was not uploaded" });
+      }
+
+      const result: ResultCreateSensorData[] =
+        await this.sensorService.saveSensorReadingsFromCSV(req.file.buffer);
+      return res.status(201).json(result);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
+  }
+
   public async getSensorAverages(
     req: Request,
     res: Response

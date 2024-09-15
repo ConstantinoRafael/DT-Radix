@@ -12,7 +12,11 @@ const SensorReadingSchema: Schema = new Schema({
   value: { type: Number, required: true },
 });
 
-export type CreateSensorData = Omit<ISensorReading, "_id">;
+export type CreateSensorData = {
+  equipmentId: string;
+  timestamp: Date;
+  value: number;
+};
 
 export type ResultCreateSensorData = Pick<ISensorReading, "_id">;
 
