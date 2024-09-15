@@ -1,16 +1,22 @@
 import SensorReading, {
+  CreateSensorData,
   ISensorReading,
+  ResultCreateSensorData,
   SensorAverage,
 } from "../models/sensor-reading-model";
 
 export class SensorRepository {
-  async saveSensorData(
-    equipmentId: string,
-    timestamp: Date,
-    value: number
-  ): Promise<ISensorReading> {
-    const sensorData = new SensorReading({ equipmentId, timestamp, value });
-    return await sensorData.save();
+  async saveSensorReading(
+    sensorData: CreateSensorData
+  ): Promise<ResultCreateSensorData> {
+    const sensorReading = new SensorReading(sensorData);
+    return await sensorReading.save();
+  }
+
+  async saveMultipleSensorReadings(
+    sensorDataArray: ISensorReading[]
+  ): Promise<CreateSensorData[]> {
+    return await SensorReading.insertMany(sensorDataArray);
   }
 
   async getAverageSensorReadings(startDate: Date): Promise<SensorAverage[]> {

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { SensorService } from "../services/sensor-service";
+import { ResultCreateSensorData } from "../models/sensor-reading-model";
 
 export class SensorController {
   private sensorService: SensorService;
@@ -8,25 +9,27 @@ export class SensorController {
     this.sensorService = sensorService;
   }
 
-  public async postSensorData(req: Request, res: Response): Promise<Response> {
+  public async saveSensorReading(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     try {
-      const { equipmentId, timestamp, value } = req.body;
+      const sensorData = req.body;
 
-      if (!equipmentId || !timestamp || !value) {
+      if (
+        !sensorData.equipmentId ||
+        !sensorData.timestamp ||
+        !sensorData.value
+      ) {
         return res
           .status(400)
           .json({ error: "Missing parameters in the request body" });
       }
 
-      await this.sensorService.saveSensorData(
-        equipmentId,
-        new Date(timestamp),
-        value
-      );
+      const result: ResultCreateSensorData =
+        await this.sensorService.saveSensorReading(sensorData);
 
-      return res
-        .status(201)
-        .json({ message: "Sensor data saved successfully" });
+      return res.status(201).json(result);
     } catch (error) {
       return res.status(500).json({ error });
     }

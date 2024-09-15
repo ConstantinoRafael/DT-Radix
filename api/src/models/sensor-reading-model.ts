@@ -12,6 +12,10 @@ const SensorReadingSchema: Schema = new Schema({
   value: { type: Number, required: true },
 });
 
+export type CreateSensorData = Omit<ISensorReading, "_id">;
+
+export type ResultCreateSensorData = Pick<ISensorReading, "_id">;
+
 export type SensorAverage = Omit<ISensorReading, "timestemp">;
 
 export default mongoose.model<ISensorReading>(

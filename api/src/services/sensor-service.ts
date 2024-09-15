@@ -1,6 +1,12 @@
 import moment from "moment";
 import { SensorRepository } from "../repositories/sensor-repository";
-import { SensorAverage } from "../models/sensor-reading-model";
+import {
+  CreateSensorData,
+  ISensorReading,
+  ResultCreateSensorData,
+  SensorAverage,
+} from "../models/sensor-reading-model";
+import csv from "csvtojson";
 
 export class SensorService {
   private sensorRepository: SensorRepository;
@@ -9,13 +15,25 @@ export class SensorService {
     this.sensorRepository = sensorRepository;
   }
 
-  async saveSensorData(
-    equipmentId: string,
-    timestamp: Date,
-    value: number
-  ): Promise<void> {
-    await this.sensorRepository.saveSensorData(equipmentId, timestamp, value);
+  async saveSensorReading(
+    sensorData: CreateSensorData
+  ): Promise<ResultCreateSensorData> {
+    return await this.sensorRepository.saveSensorReading(sensorData);
   }
+
+  // async saveSensorReadingsFromCSV(csvData: Buffer): Promise<any> {
+  //   const jsonArray = await csv().fromString(csvData.toString());
+
+  //   const sensorDataArray = jsonArray.map((row: ISensorReading) => ({
+  //     equipmentId: row.equipmentId,
+  //     timestamp: new Date(row.timestamp),
+  //     value: row.value,
+  //   }));
+
+  //   return await this.sensorRepository.saveMultipleSensorReadings(
+  //     sensorDataArray
+  //   );
+  // }
 
   private getStartDate(period: string): Date {
     switch (period) {

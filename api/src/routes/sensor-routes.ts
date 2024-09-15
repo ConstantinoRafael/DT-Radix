@@ -10,7 +10,7 @@ const sensorService = new SensorService(sensorRepository);
 const sensorController = new SensorController(sensorService);
 
 router.post("/sensor-data", (req, res) =>
-  sensorController.postSensorData(req, res)
+  sensorController.saveSensorReading(req, res)
 );
 
 router.get("/sensor-averages", (req, res) =>
