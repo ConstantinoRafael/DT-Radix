@@ -1,9 +1,12 @@
+import React from "react";
 import Dashboard from "./dashboard/page";
-
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
-      <Dashboard />
+      <h1>ssss</h1>
+      <Dashboard></Dashboard>
     </>
   );
-}
+};
+
+export default Home;
