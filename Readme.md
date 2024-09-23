@@ -90,3 +90,8 @@ The project aims to create an infrastructure to receive real-time sensor data fr
   period: Specify the timeframe for averaging (e.g., 24h, 48h, 1w, 1m).
 - **Exemple:** `http://localhost:5000/api/sensors/sensor-averages?period=24h`
 - **Description:** Receives a CSV file, parses it, and stores the data in the database.
+
+## Obs
+
+- When the container starts, the database will be empty. You can populate it by uploading a CSV file using either the backend or the frontend.
+- The following CSV file can be used: [sensors.sensorreadings.csv](https://github.com/user-attachments/files/17104047/sensors.sensorreadings.csv)
