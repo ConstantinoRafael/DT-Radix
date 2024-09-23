@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  height: 100vh; /* Altura total da tela */
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px; /* Espaçamento entre os botões */
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #0070f3; /* Cor do botão */
+  color: white;
+  text-decoration: none; /* Remove o sublinhado */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #005bb5; /* Cor do botão ao passar o mouse */
+}

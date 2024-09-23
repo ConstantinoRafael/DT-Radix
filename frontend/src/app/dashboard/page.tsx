@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SensorAveragesTable from "../components/SensorAverageTable";
 import SensorAveragesBarChart from "../components/SensorAveragesBarChart";
+import styles from "./style.module.css";
+import Link from "next/link";
 
 interface SensorAverage {
   equipmentId: string;
@@ -13,7 +15,7 @@ type Period = "24h" | "48h" | "1w" | "1m";
 
 const SensorDashboard: React.FC = () => {
   const [averages, setAverages] = useState<SensorAverage[]>([]);
-  const [selectedPeriod, setSelectedPeriod] = useState<Period>("24h"); // Estado para o período selecionado
+  const [selectedPeriod, setSelectedPeriod] = useState<Period>("24h");
 
   useEffect(() => {
     const fetchSensorAverages = async () => {
@@ -35,15 +37,24 @@ const SensorDashboard: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.buttonContainer}>
+        <Link href="/" className={styles.button}>
+          Home
+        </Link>
+        <Link href="/upload-csv" className={styles.button}>
+          Upload CSV
+        </Link>
+      </div>
       <h1>Sensor Dashboard</h1>
 
-      <div style={{ marginBottom: "20px" }}>
+      <div className={styles.selectContainer}>
         <label htmlFor="period">Select Period: </label>
         <select
           id="period"
           value={selectedPeriod}
           onChange={handlePeriodChange}
+          className={styles.select}
         >
           <option value="24h">Last 24 Hours</option>
           <option value="48h">Last 48 Hours</option>
@@ -53,7 +64,6 @@ const SensorDashboard: React.FC = () => {
       </div>
 
       <SensorAveragesTable averages={averages} />
-
       <SensorAveragesBarChart averages={averages} />
     </div>
   );
