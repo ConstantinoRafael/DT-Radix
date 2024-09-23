@@ -1,4 +1,3 @@
-// SensorAveragesBarChart.tsx
 import React from "react";
 import {
   Chart as ChartJS,
@@ -11,7 +10,6 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-// Registrar os componentes necessários do Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,

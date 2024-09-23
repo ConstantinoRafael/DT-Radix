@@ -15,7 +15,7 @@ const SensorAveragesTable: React.FC<SensorAveragesTableProps> = ({
   return (
     <div>
       <h2>Sensor Averages</h2>
-      <table border="1">
+      <table border={1}>
         <thead>
           <tr>
             <th>Equipment ID</th>
